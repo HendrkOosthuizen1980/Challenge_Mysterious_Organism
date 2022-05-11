@@ -57,32 +57,38 @@ function pAequorFactory(num, dnaStrand) {
         )} % DNA in common`
       );
     },
-    willLikelySurvive() {},
+    willLikelySurvive() {
+      const goingToSurvive = this.dna.filter((elem) => {
+        return elem === 'C' || elem === 'G';
+      });
+
+      return goingToSurvive.length / this.dna.length >= 0.6;
+    },
   };
 }
 
-const organismA = pAequorFactory(1, ['T', 'R', 'F', 'S']);
+/*
+const organismA = pAequorFactory(1, mockUpStrand());
+const organismB = pAequorFactory(2, mockUpStrand());
 
 console.log(organismA);
-
-const organismB = {
-  _specimenNum: 2,
-  _dna: ['T', 'C', 'E', 'S'],
-  get specimenNum() {
-    return this._specimenNum;
-  },
-  set specimenNum(newSpecimenNum) {
-    this._specimenNum = newSpecimenNum;
-  },
-  get dna() {
-    return this._dna;
-  },
-  set dna(newDna) {
-    this._dna = newDna;
-  },
-};
-
 console.log(organismB);
 
 const compareDNA = organismA.compareDNA(organismB);
-//console.log(compareDNA);
+
+const willSurvive = organismA.willLikelySurvive();
+console.log(willSurvive);
+*/
+
+const survivingPaeqor = [];
+let idCounter = 1;
+
+while (survivingPaeqor.length < 30) {
+  let newOrg = pAequorFactory(idCounter, mockUpStrand());
+  if (newOrg.willLikelySurvive()) {
+    survivingPaeqor.push(newOrg);
+  }
+  idCounter++;
+}
+
+console.log(survivingPaeqor);
