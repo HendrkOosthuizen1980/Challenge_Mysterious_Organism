@@ -64,31 +64,53 @@ function pAequorFactory(num, dnaStrand) {
 
       return goingToSurvive.length / this.dna.length >= 0.6;
     },
+    complementStrand() {
+      const compStrand = this.dna.map((base) => {
+        switch (base) {
+          case 'A':
+            return 'T';
+            break;
+          case 'T':
+            return 'A';
+            break;
+          case 'C':
+            return 'G';
+            break;
+          case 'G':
+            return 'C';
+            break;
+          default:
+            return -1;
+            break;
+        }
+      });
+      return compStrand;
+    },
   };
 }
 
-/*
 const organismA = pAequorFactory(1, mockUpStrand());
-const organismB = pAequorFactory(2, mockUpStrand());
+// const organismB = pAequorFactory(2, mockUpStrand());
 
 console.log(organismA);
-console.log(organismB);
+// console.log(organismB);
 
-const compareDNA = organismA.compareDNA(organismB);
+// const compareDNA = organismA.compareDNA(organismB);
 
-const willSurvive = organismA.willLikelySurvive();
-console.log(willSurvive);
-*/
+// const willSurvive = organismA.willLikelySurvive();
+// console.log(willSurvive);
 
-const survivingPaeqor = [];
-let idCounter = 1;
+// const survivingPaeqor = [];
+// let idCounter = 1;
 
-while (survivingPaeqor.length < 30) {
-  let newOrg = pAequorFactory(idCounter, mockUpStrand());
-  if (newOrg.willLikelySurvive()) {
-    survivingPaeqor.push(newOrg);
-  }
-  idCounter++;
-}
+// while (survivingPaeqor.length < 30) {
+//   let newOrg = pAequorFactory(idCounter, mockUpStrand());
+//   if (newOrg.willLikelySurvive()) {
+//     survivingPaeqor.push(newOrg);
+//   }
+//   idCounter++;
+// }
 
-console.log(survivingPaeqor);
+// console.log(survivingPaeqor);
+
+console.log(organismA.complementStrand());
